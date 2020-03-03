@@ -2,6 +2,8 @@
 #include <SoftwareSerial.h>
 
 String inputString;
+RoverControl Controller;
+
 void setup()
 {
 
@@ -16,7 +18,14 @@ void loop()
         }
 
         // Logic to interpret command
-        
+        switch (inputStirng)
+        {
+        case "a":
+            Controller.moveForward();
+            break;
+        default:
+            break;
+        } 
 
     }
     

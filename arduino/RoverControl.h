@@ -2,7 +2,7 @@
 
 class RoverControl
 {
-  public:
+  private:
     int wheelSpeed = 255;
 
     Wheel LeftBackWheel(A0, 2, 6, wheelSpeed);
@@ -10,6 +10,7 @@ class RoverControl
     Wheel RightBackWheel(A2, 4, 8, wheelSpeed); 
     Wheel RightFrontWheel(A3, 5, 9, wheelSpeed);
     
+  public:
     void moveForward()
     {
         LeftFrontWheel.forward();
