@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import (QWidget, QGridLayout,QPushButton, QApplication)
 import sys
-from comm import ArduinoConnection
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -14,8 +13,8 @@ class MainWindow(QWidget):
         self.rightRotateButton = QPushButton("Rotate Left")
         self.leftRotateButton = QPushButton("Rotate Right")
 
-        self.upButton = QPushButton("Move Up")
-        self.downButton = QPushButton("Move Down")
+        self.upButton = QPushButton("Up")
+        self.downButton = QPushButton("Down")
 
         Layout = QGridLayout()
         self.setLayout(Layout)
@@ -32,4 +31,4 @@ class MainWindow(QWidget):
         Layout.addWidget(self.upButton,4, 0, 1, 1)
         Layout.addWidget(self.downButton,4, 1, 1, 1)
         
-        self.setWindowTitle('Rover Control')
+        self.setWindowTitle('Arm Control')

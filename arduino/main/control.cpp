@@ -1,16 +1,25 @@
-#include "wheel.h"
+#include <Arduino.h>
+#include "wheel.cpp"
 
 class RoverControl
 {
   private:
-    int wheelSpeed = 255;
+    int wheelSpeed;
+    Wheel LeftBackWheel;
+    Wheel LeftFrontWheel;
+    Wheel RightBackWheel;
+    Wheel RightFrontWheel;
 
-    Wheel LeftBackWheel(A0, 2, 6, wheelSpeed);
-    Wheel LeftFrontWheel(A1, 3, 7, wheelSpeed);
-    Wheel RightBackWheel(A2, 4, 8, wheelSpeed); 
-    Wheel RightFrontWheel(A3, 5, 9, wheelSpeed);
-    
   public:
+    void init(int speed)
+    {
+      wheelSpeed = speed;
+      LeftBackWheel.setPins(A0, 2, 6, wheelSpeed);
+      LeftFrontWheel.setPins(A1, 3, 7, wheelSpeed);
+      RightBackWheel.setPins(A2, 4, 8, wheelSpeed);
+      RightFrontWheel.setPins(A3, 5, 9, wheelSpeed);
+    }
+
     void moveForward()
     {
         LeftFrontWheel.forward();
@@ -52,4 +61,4 @@ class RoverControl
       RightFrontWheel.backward();
       RightBackWheel.backward();
     }
-}
+};

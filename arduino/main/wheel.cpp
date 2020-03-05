@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 class Wheel{
     public: 
         int enablePin;
@@ -5,7 +7,7 @@ class Wheel{
         int in2Pin;
         int speed;
 
-        Wheel(int en, int in1, int in2, int speed_val)
+        void setPins(int en, int in1, int in2, int speed_val)
         {
             pinMode(en, OUTPUT);
             pinMode(in1, OUTPUT);
