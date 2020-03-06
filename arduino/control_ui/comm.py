@@ -15,10 +15,11 @@ class ArduinoConnection:
         self.serial.write(message)
 
 class SSHConnection:
-    def __init__(self, path_to_keys):
+    def __init__(self, path_to_keys, port):
         self.ssh = paramiko.SSHClient()
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         self.data = []
+        self.port = port
 
         with open(path_to_keys) as f:
             self.data = [x.split("=")[1].strip() for x in f.readlines()]
@@ -30,13 +31,25 @@ class SSHConnection:
         # ssh.load_system_host_keys()
         self.ssh.connect(self.server, username=self.username,password=self.password)
 
-    def send(self, command):
-        ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(command)
+    def get_available_ports(self):
+        cmd_todev = "cd /dev/ && ls"
 
-        print(ssh_stdin)
-        print(ssh_stdout.readlines())
-        print(ssh_stderr)
+        _, ports, _ = self.ssh.exec_command(str(cmd_todev))
+
+        with open("ports_on_pi.txt", "w+") as f:
+            for line in ports.readlines():
+                f.write(line)
+        # _, ports, _ = self.ssh.exec_command(str(cmd_list))
+
+        return
+
+    def send(self, command):
+        send_command = "python3 send_to_arduino.py prod {} {}".format(self.port, str(command).strip())
+        print("Sent: {}".format(send_command))
+        ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(str(send_command))
+
+        # print(ssh_stdin)
+        print("Received: {}".format(ssh_stdout.readlines()))
+        # print(ssh_stderr)
     
-config_path = "/Users/rafaykalim/University-BS/praxis_III/aruco/keys.txt"
-conn = SSHConnection(config_path)
-conn.send("ls")
+# Make "test" prod to execute

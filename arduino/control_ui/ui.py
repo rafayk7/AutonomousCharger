@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import (QWidget, QGridLayout,QPushButton, QApplication)
+from PyQt5.QtWidgets import (QWidget, QGridLayout,QPushButton, QApplication, QLineEdit)
 import sys
 
 class MainWindow(QWidget):
@@ -16,6 +16,9 @@ class MainWindow(QWidget):
         self.upButton = QPushButton("Up")
         self.downButton = QPushButton("Down")
 
+        self.port_textbox = QLineEdit(self)
+        self.set_port_button = QPushButton("Set Port")
+
         Layout = QGridLayout()
         self.setLayout(Layout)
 
@@ -30,5 +33,9 @@ class MainWindow(QWidget):
 
         Layout.addWidget(self.upButton,4, 0, 1, 1)
         Layout.addWidget(self.downButton,4, 1, 1, 1)
+
+        Layout.addWidget(self.port_textbox,5, 0, 1, 3)
+        Layout.addWidget(self.set_port_button,6, 0, 1, 3)
+
         
         self.setWindowTitle('Arm Control')
