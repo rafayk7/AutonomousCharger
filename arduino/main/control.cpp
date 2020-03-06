@@ -14,10 +14,10 @@ class RoverControl
     void init(int speed)
     {
       wheelSpeed = speed;
-      LeftBackWheel.setPins(A0, 2, 6, wheelSpeed);
-      LeftFrontWheel.setPins(A1, 3, 7, wheelSpeed);
-      RightBackWheel.setPins(A2, 4, 8, wheelSpeed);
-      RightFrontWheel.setPins(A3, 5, 9, wheelSpeed);
+      LeftBackWheel.setPins(5, 6, 7, wheelSpeed);
+      LeftFrontWheel.setPins(10, 9, 8, wheelSpeed);
+      RightBackWheel.setPins(3, 4, 2, wheelSpeed);
+      RightFrontWheel.setPins(11, 13, 12, wheelSpeed);
     }
 
     void moveForward()
