@@ -16,26 +16,30 @@ class MainWindow(QWidget):
         self.upButton = QPushButton("Up")
         self.downButton = QPushButton("Down")
 
+        self.stopButton = QPushButton("STOP")
+
+
         self.port_textbox = QLineEdit(self)
         self.set_port_button = QPushButton("Set Port")
 
         Layout = QGridLayout()
         self.setLayout(Layout)
 
-        Layout.addWidget(self.forwardButton,0, 0, 1, 3)
-        Layout.addWidget(self.backwardButton,2, 0, 1, 3)
+        Layout.addWidget(self.stopButton, 0, 0, 2, 3)
+        Layout.addWidget(self.forwardButton,2, 0, 1, 3)
+        Layout.addWidget(self.backwardButton,4, 0, 1, 3)
 
-        Layout.addWidget(self.leftButton,1, 0, 1, 1)
-        Layout.addWidget(self.rightButton,1, 1, 1, 1)
+        Layout.addWidget(self.leftButton,3, 0, 1, 1)
+        Layout.addWidget(self.rightButton,3, 1, 1, 1)
 
-        Layout.addWidget(self.leftRotateButton,3, 0, 1, 1)
-        Layout.addWidget(self.rightRotateButton,3, 1, 1, 1)
+        Layout.addWidget(self.leftRotateButton,5, 0, 1, 1)
+        Layout.addWidget(self.rightRotateButton,5, 1, 1, 1)
 
-        Layout.addWidget(self.upButton,4, 0, 1, 1)
-        Layout.addWidget(self.downButton,4, 1, 1, 1)
+        Layout.addWidget(self.upButton,6, 0, 1, 1)
+        Layout.addWidget(self.downButton,6, 1, 1, 1)
 
-        Layout.addWidget(self.port_textbox,5, 0, 1, 3)
-        Layout.addWidget(self.set_port_button,6, 0, 1, 3)
+        Layout.addWidget(self.port_textbox,7, 0, 1, 3)
+        Layout.addWidget(self.set_port_button,8, 0, 1, 3)
 
         
         self.setWindowTitle('Arm Control')

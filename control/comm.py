@@ -44,7 +44,7 @@ class SSHConnection:
         return
 
     def send(self, command):
-        send_command = "python3 send_to_arduino.py prod {} {}".format(self.port, str(command).strip())
+        send_command = "python3 send_to_arduino.py test {} {}".format(self.port, str(command).strip())
         print("Sent: {}".format(send_command))
         ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(str(send_command))
 

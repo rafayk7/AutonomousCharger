@@ -8,7 +8,7 @@ baud_rate = 38400
 config_path = "/Users/rafaykalim/University-BS/praxis_III/aruco/keys.txt"
 
 
-# CommAPI = ArduinoConnection(port, baud_rate=baud_rate)
+CommAPI = ArduinoConnection(port, baud_rate=baud_rate)
 CommAPI = SSHConnection(config_path, port)
 CommAPI.get_available_ports()
 
@@ -36,6 +36,7 @@ if __name__ == '__main__':
     window.downButton.clicked.connect(lambda: CommAPI.send(7))
 
     window.set_port_button.clicked.connect(set_port)
+    window.stopButton.clicked.connect(lambda: CommAPI.send(8))
 
     window.show()
     sys.exit(app.exec_())
