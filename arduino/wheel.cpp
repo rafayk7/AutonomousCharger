@@ -32,4 +32,10 @@ class Wheel{
             digitalWrite(in1Pin, LOW);
             digitalWrite(in2Pin, HIGH);
         }
+
+        void stop()
+        {
+            digitalWrite(in1Pin, LOW);
+            digitalWrite(in2Pin, LOW);
+        }
 };

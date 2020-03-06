@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "wheel.cpp"
+#include "../wheel.cpp"
 
 class RoverControl
 {
@@ -60,5 +60,11 @@ class RoverControl
       LeftBackWheel.forward();
       RightFrontWheel.backward();
       RightBackWheel.backward();
+    }
+    void stopMotion(){
+      LeftFrontWheel.stop();
+      LeftBackWheel.stop();
+      RightFrontWheel.stop();
+      RightBackWheel.stop();
     }
 };
