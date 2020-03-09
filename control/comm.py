@@ -1,5 +1,6 @@
 import serial
 import paramiko
+import time
 
 class ArduinoConnection:
     def __init__(self, port, baud_rate=None):
@@ -30,6 +31,10 @@ class SSHConnection:
 
         # ssh.load_system_host_keys()
         self.ssh.connect(self.server, username=self.username,password=self.password)
+        send_command = "sudo python3 send_to_arduino.py prod {} {}".format(self.port, "1".strip())
+        _ , stdout, _ = self.ssh.exec_command(str(send_command))
+
+        print(stdout.readlines())
 
     def get_available_ports(self):
         cmd_todev = "cd /dev/ && ls"
@@ -44,9 +49,9 @@ class SSHConnection:
         return
 
     def send(self, command):
-        send_command = "python3 send_to_arduino.py test {} {}".format(self.port, str(command).strip())
-        print("Sent: {}".format(send_command))
-        ssh_stdin, ssh_stdout, ssh_stderr = self.ssh.exec_command(str(send_command))
+        # send_command = "{}".format(command)
+        print("Sent: {}".format(command))
+        self.std_in.write((str(command)))
 
         # print(ssh_stdin)
         print("Received: {}".format(ssh_stdout.readlines()))
